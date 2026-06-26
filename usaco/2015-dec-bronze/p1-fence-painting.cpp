@@ -1,4 +1,4 @@
-# https://usaco.org/index.php?page=viewproblem2&cpid=567
+// https://usaco.org/index.php?page=viewproblem2&cpid=567
 #include <cstdio>
 #include <iostream>
 using namespace std;
