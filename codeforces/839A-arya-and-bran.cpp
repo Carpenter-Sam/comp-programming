@@ -6,7 +6,11 @@ int main() {
     int total_days, days = 0, candies_needed, candies_total = 0;
     cin >> total_days >> candies_needed;
 
-    while (candies_needed > 0 || days++ < total_days) {
+    while (days++ < total_days) {
+        if (candies_needed <= 0) {
+            break;
+        }
+
         int new_candies;
         cin >> new_candies;
         candies_total += new_candies;
@@ -20,8 +24,8 @@ int main() {
         }
     }
 
-    if (candies_needed == 0) {
-        cout << days  << endl;
+    if (candies_needed <= 0) {
+        cout << (days - 1) << endl;
     } else {
         cout << -1 << endl;
     }
