@@ -3,49 +3,34 @@
 #include <unordered_map>
 using namespace std;
 
-struct Node {
-    int val;
-    Node *next;
-};
-
 int main() {
     int planes;
     cin >> planes;
 
-    unordered_map<int, Node> links = {};
+    unordered_map<int, int> links = {}; // improve by using vector instead of u_map
     bool triangle = false;
 
-    for (int i = 1; i < (planes + 1); i++) {
-        links.insert({i, Node()});
-    }
-
-    for (int i = 1; i < (planes + 1); i++) {
+    for (int i = 1; i <= planes + 1; i++) {
         int loves;
         cin >> loves;
 
-        // if (links.count(loves) == 0) {
-        //     links.insert(loves, Node(0, nullptr));
-        // }
-        
-        // if (links.count(i) == 0) {
-        //     links.insert({i, Node(loves, links[loves])});
-        // } else {
-        //     links[i]
-        // }
+        links.insert({i, loves});
 
-        links[i].val = loves;
-        links[i].next = &links[loves];
-
-        // new node link
-            // for node value check unordered map to see if it exists
-                // if not exists then add to it
-            // check if exists in unordered map
-                // doesn't exist? then add it with node
-                // does exist? change node
-        // check if node forms a triangle
-            // triangle if after three links is back in same place
-
+        if (links.count(loves) == 0) { // Check if B -> C exists
+            continue;
+        } else if (links.count(links[loves]) == 0) { // Check if C -> ? exists
+            continue;
+        } else if (links[links[loves]] == i) { // Check if C -> exists
+            triangle = true;
+            break;
+        }
     }
-    // check if node forms a triangle
+
+    if (triangle) {
+        cout << "YES" << "\n";
+    } else {
+        cout << "NO" << "\n";
+    }
+    
     return 0;
 }
